@@ -1,12 +1,15 @@
 package com.detektor.inventarioback.servicios;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Service;
-
+import java.util.List;
+import java.util.Optional;
 import com.detektor.inventarioback.dao.entidades.Vehiculo;
 
+public interface VehiculoService {
+    List<Vehiculo> getAll();
 
-@Service
-public interface VehiculoService extends JpaRepository<Vehiculo,Long> {
-    
+    Optional<Boolean> save(Vehiculo propietario);
+
+    Optional<Boolean> delete(Long id);
+
+    Optional<Vehiculo> findById(Long id);
 }

@@ -1,8 +1,12 @@
 package com.detektor.inventarioback.dao.entidades;
 
+import java.util.Date;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -24,6 +28,16 @@ public class Propietario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private String nombre;
+
+    private String apellido;
+
+    private Long identificacion;
+
+    @Column(name = "fehca_de_nacimiento")
+    @DateTimeFormat(pattern = "dd-mm-yyyy")
+    private Date fechaNachimiento;
 
     @OneToMany(mappedBy = "propietario",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Vehiculo> vehiculo;

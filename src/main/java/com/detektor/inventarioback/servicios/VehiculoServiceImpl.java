@@ -5,25 +5,24 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.detektor.inventarioback.dao.entidades.Propietario;
-import com.detektor.inventarioback.dao.repositorios.PropietarioRepository;
+import com.detektor.inventarioback.dao.entidades.Vehiculo;
+import com.detektor.inventarioback.dao.repositorios.VehiculoRepository;
 
 @Service
-public class PropietarioServiceImpl implements PropietarioService {
+public class VehiculoServiceImpl implements VehiculoService {
 
     @Autowired
-    private PropietarioRepository propietarioRepository;
+    private VehiculoRepository vehiculoRepository;
 
     @Override
-    public List<Propietario> getAll() {
-        return propietarioRepository.findAll();
+    public List<Vehiculo> getAll() {
+        return vehiculoRepository.findAll();
     }
 
     @Override
-    public Optional<Boolean> save(Propietario propietario) {
+    public Optional<Boolean> save(Vehiculo vehiculo) {
         try {
-            propietarioRepository.save(propietario);
+            vehiculoRepository.save(vehiculo);
             return Optional.of(true);
         } catch (Exception e) {
             return Optional.empty();
@@ -32,9 +31,8 @@ public class PropietarioServiceImpl implements PropietarioService {
 
     @Override
     public Optional<Boolean> delete(Long id) {
-
         try {
-            propietarioRepository.deleteById(id);
+            vehiculoRepository.deleteById(id);
             return Optional.of(true);
         } catch (Exception e) {
             return Optional.empty();
@@ -42,8 +40,8 @@ public class PropietarioServiceImpl implements PropietarioService {
     }
 
     @Override
-    public Optional<Propietario> findById(Long id) {
-        return propietarioRepository.findById(id);
+    public Optional<Vehiculo> findById(Long id) {
+        return vehiculoRepository.findById(id);
     }
 
 }
