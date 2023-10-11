@@ -1,5 +1,9 @@
 package com.detektor.inventarioback.dao.entidades;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -43,7 +47,8 @@ public class Vehiculo {
 
     private String modelo;
 
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY,optional = false)
+    @JsonBackReference
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY,optional = true)
     private Propietario propietario;
 
 

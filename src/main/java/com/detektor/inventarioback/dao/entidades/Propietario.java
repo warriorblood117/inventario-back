@@ -5,6 +5,10 @@ import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,6 +21,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Getter
@@ -39,6 +44,7 @@ public class Propietario {
     @DateTimeFormat(pattern = "dd-mm-yyyy")
     private Date fechaNachimiento;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "propietario",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Vehiculo> vehiculo;
 }

@@ -7,13 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.detektor.inventarioback.dao.entidades.Propietario;
+import com.detektor.inventarioback.dao.entidades.Vehiculo;
 import com.detektor.inventarioback.dao.repositorios.PropietarioRepository;
+import com.detektor.inventarioback.dao.repositorios.VehiculoRepository;
 
 @Service
 public class PropietarioServiceImpl implements PropietarioService {
 
     @Autowired
     private PropietarioRepository propietarioRepository;
+
+    private VehiculoRepository vehiculoRepository;
 
     @Override
     public List<Propietario> getAll() {
@@ -23,7 +27,15 @@ public class PropietarioServiceImpl implements PropietarioService {
     @Override
     public Optional<Boolean> save(Propietario propietario) {
         try {
+            // Guarda el propietario y sus vehículos
             propietarioRepository.save(propietario);
+            List<Vehiculo> vehiculos = propietario.getVehiculo();
+            if (vehiculos != null) {
+                for (Vehiculo vehiculo : vehiculos) {
+                    vehiculo.setPropietario(propietario);
+                }
+                vehiculoRepository.saveAll(vehiculos); // Guarda todos los vehículos
+            }
             return Optional.of(true);
         } catch (Exception e) {
             return Optional.empty();
