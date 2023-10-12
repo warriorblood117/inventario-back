@@ -14,4 +14,6 @@ public interface PropietarioService {
 
     Optional<Propietario> findById(Long id);
 
+    Optional<Boolean> update (Long id, Propietario propietario);
+
 }

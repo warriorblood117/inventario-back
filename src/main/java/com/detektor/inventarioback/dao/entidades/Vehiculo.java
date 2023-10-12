@@ -16,6 +16,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Getter
@@ -47,9 +48,16 @@ public class Vehiculo {
 
     private String modelo;
 
+    
+
+    @Override
+    public String toString() {
+        return "ID: " + id + "Placa: " + placa + "Vin: " + vin;
+    }
+    
     @JsonBackReference
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY,optional = true)
     private Propietario propietario;
 
-
+  
 }
