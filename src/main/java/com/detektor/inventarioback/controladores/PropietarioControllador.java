@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,7 +27,7 @@ import com.detektor.inventarioback.servicios.VehiculoServiceImpl;
 
 @RestController
 @RequestMapping("/inventario-back/")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin("http://34.23.138.216:4200/")
 public class PropietarioControllador {
 
     @Autowired
@@ -79,6 +80,30 @@ public class PropietarioControllador {
         } catch (Exception e) {
             message = new HashMap<>();
             message.put("message", "No se pudo editar el propietario");
+            message.put("error", e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(message);
+        }
+    }
+
+    @DeleteMapping("/delete-vehiculo/{id}")
+    public ResponseEntity<?> deleteVehiculo(@PathVariable Long id) {
+        Map<String, String> message;
+        try {
+            // Intenta eliminar el vehículo por su ID
+            Optional<Boolean> deleted = vehiculoServiceImpl.delete(id);
+            
+            if (deleted.isPresent() && deleted.get()) {
+                message = new HashMap<>();
+                message.put("message", "Vehículo eliminado exitosamente");
+                return ResponseEntity.status(HttpStatus.OK).body(message);
+            } else {
+                message = new HashMap<>();
+                message.put("message", "No se pudo encontrar el vehículo con el ID especificado");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+            }
+        } catch (Exception e) {
+            message = new HashMap<>();
+            message.put("message", "No se pudo eliminar el vehículo");
             message.put("error", e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(message);
         }

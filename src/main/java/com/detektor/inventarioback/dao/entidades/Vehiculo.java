@@ -54,9 +54,9 @@ public class Vehiculo {
     public String toString() {
         return "ID: " + id + "Placa: " + placa + "Vin: " + vin;
     }
-    
+
     @JsonBackReference
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY,optional = true)
+    @ManyToOne(fetch = FetchType.LAZY,optional = true)
     private Propietario propietario;
 
   
