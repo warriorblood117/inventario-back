@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: sasa
+      MYSQL_DATABASE: inventario
+    ports:
+      - 3306:3306
+
+  springboot:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/inventario?autoReconnect=true&ssl=false  
+    ports:
+      - 8080:8080
+    depends_on:
+      - mysql

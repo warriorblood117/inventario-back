@@ -1,0 +1,12 @@
+com\detektor\inventarioback\dao\repositorios\PropietarioRepository.class
+com\detektor\inventarioback\servicios\PropietarioService.class
+com\detektor\inventarioback\ServletInitializer.class
+com\detektor\inventarioback\controladores\PropietarioControllador.class
+com\detektor\inventarioback\servicios\VehiculoServiceImpl.class
+com\detektor\inventarioback\servicios\VehiculoService.class
+com\detektor\inventarioback\dao\repositorios\VehiculoRepository.class
+com\detektor\inventarioback\InventarioBackApplication.class
+com\detektor\inventarioback\dao\entidades\Vehiculo.class
+com\detektor\inventarioback\dao\entidades\Propietario.class
+com\detektor\inventarioback\servicios\PropietarioServiceImpl.class
+com\detektor\inventarioback\controladores\VehiculoControlador.class
