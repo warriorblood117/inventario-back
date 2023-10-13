@@ -17,7 +17,9 @@ Antes de comenzar asegurate de tener instalado lo siguiente:
 3. Clonar el repositorio:
    ```bash
    git clone https://github.com/warriorblood117/inventario-back.git
-4. correr los contendores:
+   cd iventario-back
+
+5. correr los contendores:
    ```bash
    docker-compose build --no-cache
    docker-compose up
